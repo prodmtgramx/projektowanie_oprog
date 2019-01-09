@@ -1,0 +1,76 @@
+package com.km;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.km.models.Cwiczenie;
+import com.km.models.Klient;
+import com.km.models.PlanKlienta;
+import com.km.models.Posilek;
+import com.km.models.Trener;
+
+@Component
+public class ModelClassFactory {
+
+	public  Trener trener1(String name){
+		   Trener t = new Trener();
+		   t.setDescr("Witam, moja specjalizacja to budowa miesni, zapraszam do wspolpracy!");
+		   t.setEmail("marek.markowski@gmail.com");
+		   t.setName(name);
+		   t.setSecondName("Markowski");
+		   t.setUsername("maro123");
+		   t.setPassword("marecki123");
+		   List<PlanKlienta> pkl = new ArrayList<>();
+		   pkl.add(this.plan1());
+		   return t;
+	   }
+	   
+	   public  Klient klient1(){
+		   Klient t = new Klient();
+		   t.setYear(1877);
+		   t.setEmail("marek.markowski@gmail.com");
+		   t.setFirstName("Marek");
+		   t.setSecondName("Markowski");
+		   t.setUsername("maro123");
+		   t.setPassword("marecki123");
+		   return t;
+	   }
+	   
+	   public PlanKlienta plan1() 
+	   {
+		   PlanKlienta pk = new PlanKlienta();
+		   pk.setDescr("Plan - budowa miesni. W tydzien staniesz sie 2 Mariuszem Pudzianowskim!.");
+		   pk.setName("Budowa Miesci wersja SUPER PRO 2000");
+		   pk.setPrice(new BigDecimal(199));
+		   List<Cwiczenie> cwicz = new ArrayList<>();
+		   cwicz.add(this.cwicz1());
+		   pk.setCwiczenia(cwicz);		   
+		   List<Posilek> pos = new ArrayList<>();
+		   pos.add(this.posil1());	   
+		   pk.setPosilki(pos);		   
+		   return pk;
+	   }
+	   
+	   public  Cwiczenie cwicz1() {
+		   Cwiczenie c = new Cwiczenie();
+		   c.setJakWykonac("Machaj rekami jak glupi");
+		   c.setLiczbaPowtorzen(100);
+		   c.setSerie(10);
+		   c.setNazwa("Duzy biceps wersja 2");
+		   c.setNaCoDziala("biceps lewej reki");
+		   return c;
+	   }
+	   
+	   public Posilek posil1() {
+		   Posilek c = new Posilek();
+		   c.setEatTime("Rano i wiczorem");
+		   c.setJakPrzygotowac("Potrzebane beda: jajka, woda, sol i piwo. Wymieszaj wszystko razem i wypij.");
+		   c.setKalorie(1233);
+		   c.setNazwa("Super posilek na miesien piwny");
+		   c.setOpis("Posilek wykorzystuje najbardziej podstawowe skladniki nieodlaczne kazdej diecie w super innowacyjny sposob");;
+		   return c;
+	   }
+}
